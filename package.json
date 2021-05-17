@@ -1,8 +1,8 @@
 {
-  "name": "13-Ins-Pass-Tests",
+  "name": "teamProfileGenerator",
   "version": "1.0.0",
   "description": "",
-  "main": "fizz.js",
+  "main": "index.js",
   "directories": {
     "test": "tests"
   },
