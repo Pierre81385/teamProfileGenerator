@@ -3,6 +3,16 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 
+const path = require("path");
+const fs = require("fs");
+
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+
+const render = require("./lib/renderHTML");
+const { resolve } = require("path");
+const { report } = require("process");
+
 function managerPrompts() {
   return inquirer.prompt([
     {
@@ -114,6 +124,12 @@ function makeEngineer() {
       makeIntern();
     } else if (response.addEmployee == "None") {
       allEmployee.push(engineer);
+
+      fs.writeFile("./output/team.html", render(allEmployee), function (err) {
+        if (err) throw err;
+        console.log("Writing file @makeEngineer function.");
+      });
+
       return;
     }
   });
@@ -135,6 +151,12 @@ function makeIntern() {
       makeIntern();
     } else if (response.addEmployee == "None") {
       allEmployee.push(intern);
+
+      fs.writeFile("./output/team.html", render(allEmployee), function (err) {
+        if (err) throw err;
+        console.log("Writing file @makeIntern function.");
+      });
+
       return;
     }
   });
@@ -157,6 +179,11 @@ function makeManager() {
       makeIntern();
     } else if (response.addEmployee == "None") {
       allEmployee.push(manager);
+
+      fs.writeFile("./output/team.html", render(allEmployee), function (err) {
+        if (err) throw err;
+        console.log("Writing file @makeManager function.");
+      });
 
       return;
     }
